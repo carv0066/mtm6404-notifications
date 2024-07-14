@@ -7,7 +7,7 @@ const Notification = ({ id, name, message, onClear }) => (
   <div className="notification">
     <h3>{name}</h3>
     <p>{message}</p>
-    <button className='notification-clear-btn' onClick={() => onClear(id)}>Clear</button>
+    <button className='clear-btn' onClick={() => onClear(id)}>Clear</button>
   </div>
 );
 

@@ -9,9 +9,9 @@ body {
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  background-color: #b0cbcb;
+  border: 1px solid #bad7d3;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   font-family: "Montserrat", sans-serif;
 }
@@ -35,19 +35,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.notification-name {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.notification-message {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
-}
-
-.notification-clear-btn {
+.clear-btn {
   background-color: #355cdc;
   color: #fff;
   border: none;
@@ -58,7 +46,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.notification-clear-btn:hover {
+.clear-btn:hover {
   background-color: #041b67;
 }
 
