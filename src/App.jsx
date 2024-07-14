@@ -1,34 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import notificationsInfo from './notifications';
+import { useState } from 'react';
+import './App.css';
+
+const Notification = ({ id, name, message, onClear }) => (
+  <div className="notification">
+    <h3>{name}</h3>
+    <p>{message}</p>
+    <button className='notification-clear-btn' onClick={() => onClear(id)}>Clear</button>
+  </div>
+);
+
+const App = () => {
+  //state to hold the notifications
+  const [notifications, setNotifications] = useState(notificationsInfo);
+
+  const handleClearNotification = (id) => {
+    const modifiedNotifications = [];
+    // Loop through current notifications 
+    for (let i = 0; i < notifications.length; i++) {
+      if (notifications[i].id !== id) {
+        modifiedNotifications.push(notifications[i]);
+      }
+    }
+    setNotifications(modifiedNotifications);
+  };
+
+  const handleClearAllNotifications = () => {
+    //Set notifications to an empty array with no notifications to display
+    setNotifications([]);
+  };
+
+
+  const renderedNotifications = [];
+  for (let i = 0; i < notifications.length; i++) {
+    const notification = notifications[i];
+    renderedNotifications.push(
+      <Notification
+        key={notification.id}
+        id={notification.id}
+        name={notification.name}
+        message={notification.message}
+        onClear={handleClearNotification}
+      />
+    );
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <h1>Notifications ({notifications.length})</h1>
+      <div className="notifications-list">
+        {/* Render each Notification component manually */}
+        {renderedNotifications}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Button to clear all notifications */}
+      <button onClick={handleClearAllNotifications} className='clear-all-btn'>Clear All</button>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
